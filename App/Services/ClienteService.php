@@ -7,7 +7,7 @@ class ClienteService {
     /**
      * Retorna a lista de clientes formatada
      */
-    public function listarTudo(): array {
+    public function findAll(): array {
         if (!file_exists($this->arquivo)) {
             return [];
         }
@@ -18,7 +18,7 @@ class ClienteService {
     /**
      * Salvar os dados vindos do formulário
      */
-    public function salvar(array $dados): bool {
+    public function store(array $dados): bool {
         $json = json_encode($dados, JSON_PRETTY_PRINT);
         return file_put_contents($this->arquivo, $json) !== false;
     }

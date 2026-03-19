@@ -73,7 +73,7 @@ class AuthController extends BaseController {
     /**
      * Salva a lista de clientes enviada pelo Dashboard
      */
-    public function salvarClientes() {
+    public function save() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             return $this->json(['erro' => 'Não autorizado'], 403);
         }
@@ -85,7 +85,7 @@ class AuthController extends BaseController {
             return $this->json(['erro' => 'Formato de dados inválido'], 400);
         }
 
-        if ($this->clienteService->salvar($dados)) {
+        if ($this->clienteService->store($dados)) {
             return $this->json(['status' => 'sucesso']);
         }
 
@@ -95,12 +95,12 @@ class AuthController extends BaseController {
     /**
      * Retorna o conteúdo do JSON para preencher a tabela
      */
-    public function listarClientes() {
+    public function list() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             return $this->json(['erro' => 'Não autorizado'], 403);
         }
 
-        $clientes = $this->clienteService->listarTudo();
+        $clientes = $this->clienteService->findAll();
         
         return $this->json($clientes);
     }
