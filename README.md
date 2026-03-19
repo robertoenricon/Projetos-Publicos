@@ -17,7 +17,7 @@ O projeto conta com uma Landing Page moderna e um Dashboard administrativo com p
 * **Servidor Web:** Apache
 * **Persistência:** Arquivo JSON (`clientes.json`)
 
-# 📂 Estrutura do Projeto
+# 📂 Arquitetura do Projeto
 ```
 ├── App/
 │   ├── Config/
