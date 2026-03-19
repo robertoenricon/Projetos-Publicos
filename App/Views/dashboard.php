@@ -22,13 +22,17 @@
                 <i class="bi bi-play-btn-fill me-2" style="color: #00c6ff;"></i>
                 <span>Roberto Enrico</span>
             </a>
-            <div class="d-flex">
-                <span class="text-secondary me-3 me-md-4 d-flex align-items-center small">
+
+            <div class="d-flex align-items-center">
+                <span class="text-secondary ms-2 ms-md-3 d-flex align-items-center small">
                     <i class="bi bi-person-circle me-1 me-md-2"></i> 
-                    <span class="d-none d-sm-inline"><?php echo $_SESSION['username']; ?></span>
+                    <span><?php echo $_SESSION['username']; ?></span>
                 </span>
+            </div>
+
+            <div class="ms-auto">
                 <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill px-3">
-                    <i class="bi bi-box-arrow-right"></i> <span class="d-none d-sm-inline">Logout</span>
+                    <i class="bi bi-box-arrow-right"></i> <span>Sair</span>
                 </a>
             </div>
         </div>
