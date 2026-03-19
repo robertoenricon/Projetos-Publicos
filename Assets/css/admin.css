@@ -14,23 +14,6 @@ body {
     margin: auto;
 }
 
-.brand-logo {
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 1.5rem; 
-    font-weight: 900; 
-}
-
-.brand-logo .icon-logo {
-    color: #00c6ff;
-}
-
-.brand-logo span {
-    background: -webkit-linear-gradient(45deg, #00c6ff, #0072ff); 
-    -webkit-background-clip: text;
-    background-clip: text; 
-    -webkit-text-fill-color: transparent;
-}
-
 .custom-input-group .input-group-text {
     background-color: #0d1117;
     border: 1px solid #30363d;

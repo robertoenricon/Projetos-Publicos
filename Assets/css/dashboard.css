@@ -5,24 +5,6 @@ body {
     overflow-x: hidden;
 }
 
-.navbar-custom {
-    background-color: #161b22;
-    border-bottom: 1px solid #30363d;
-}
-
-.brand-logo {
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 1.5rem; 
-    font-weight: 900; 
-}
-
-.brand-logo span {
-    background: -webkit-linear-gradient(45deg, #00c6ff, #0072ff); 
-    -webkit-background-clip: text;
-    background-clip: text; 
-    -webkit-text-fill-color: transparent;
-}
-
 .dashboard-container {
     margin-top: 40px;
 }
@@ -98,6 +80,44 @@ td[contenteditable="true"]:focus {
     box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
     color: white;
 }
+
+
+/* WhatsApp Botao */
+.celular-cliente {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.btn-whatsapp-circle {
+    background-color: #25D366;
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-whatsapp-circle i {
+    font-size: 1.3rem;
+}
+
+.btn-whatsapp-circle:hover {
+    background-color: #1eb954;
+    transform: scale(1.05);
+}
+
+.celular-cliente[contenteditable="true"]:focus {
+    border-bottom: 1px dashed #555;
+}
+/* WhatsApp END */
+
 
 @media (max-width: 768px) {
     .dashboard-container {
