@@ -1,8 +1,8 @@
 [
     {
-        "name": "Roberto",
-        "phone": "11943358124",
-        "date": "30\/03\/2026",
-        "status": "Inactive"
+        "nome": "Roberto",
+        "celular": "11943358124",
+        "data_renovacao": "30\/03\/2026",
+        "status": "Inativo"
     }
 ]

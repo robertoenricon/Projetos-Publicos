@@ -8,17 +8,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.navbar-custom {
-    background-color: #161b22;
-    border-bottom: 1px solid #30363d;
-}
-
-/* Brand Style */
+/* Estilo da Marca */
 .brand-logo {
     font-size: 1.8rem;
     font-weight: 900;
     letter-spacing: 1px;
-    background: -webkit-linear-gradient(45deg, #0cacdc, #48bdc0);
+    background: -webkit-linear-gradient(45deg, #00c6ff, #0072ff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -99,8 +94,8 @@ body {
     z-index: 10;
 }
 
-.btn-plans {
-    background: linear-gradient(45deg, #004599, #7195c2);
+.btn-planos {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
     border: none;
     color: white;
     font-weight: bold;
@@ -110,13 +105,12 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.btn-plans:hover {
+.btn-planos:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
     color: white;
 }
 
-/* Responsiveness */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 1.8rem !important;
@@ -131,7 +125,7 @@ body {
         font-size: 0.9rem;
     }
 
-    .btn-plans {
+    .btn-planos {
         width: 100%;
         margin-top: 15px;
     }

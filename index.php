@@ -24,11 +24,11 @@ switch ($uri) {
     case '/logout':
         (new AuthController())->logout();
         break;
-    case '/save-customers':
-        (new App\Controllers\AuthController())->save();
+    case '/salvar-clientes':
+        (new App\Controllers\AuthController())->salvarClientes();
         break;
-    case '/list-customers':
-        (new App\Controllers\AuthController())->list();
+    case '/listar-clientes':
+        (new App\Controllers\AuthController())->listarClientes();
         break;
     default:
         http_response_code(404);
