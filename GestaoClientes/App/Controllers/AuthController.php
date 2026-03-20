@@ -20,7 +20,7 @@ class AuthController extends BaseController {
      */
     public function loginForm() {
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-            header('Location: /GestaoClientes/dashboard');
+            header('Location: /dashboard');
             exit;
         }
 
@@ -40,12 +40,12 @@ class AuthController extends BaseController {
         if ($username === AuthConfig::USERNAME && $password === AuthConfig::PASSWORD) {
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $username;
-            header('Location: /GestaoClientes/dashboard');
+            header('Location: /dashboard');
             exit;
         }
         
         $_SESSION['error'] = 'Usuário ou senha inválidos.';
-        header('Location: /GestaoClientes/admin');
+        header('Location: /admin');
         exit;
     }
 
@@ -54,7 +54,7 @@ class AuthController extends BaseController {
      */
     public function dashboard() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-            header('Location: /GestaoClientes/admin');
+            header('Location: /admin');
             exit;
         }
         
@@ -66,7 +66,7 @@ class AuthController extends BaseController {
      */
     public function logout() {
         session_destroy();
-        header('Location: /GestaoClientes/admin');
+        header('Location: /admin');
         exit;
     }
 

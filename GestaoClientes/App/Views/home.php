@@ -6,20 +6,20 @@
     <title>Roberto Enrico - Aluguel de Filmes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/GestaoClientes/Assets/css/style.css">
+    <link rel="stylesheet" href="/Assets/css/style.css">
 
-    <link class="icon-cycling" rel="icon" type="image/png" sizes="32x32" href="/GestaoClientes/Assets/images/image.png">
+    <link class="icon-cycling" rel="icon" type="image/png" sizes="32x32" href="/Assets/images/image.png">
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-custom pt-4 mb-4">
         <div class="container d-flex flex-column flex-md-row align-items-start align-items-md-center">
             
-            <a class="navbar-brand brand-logo d-flex align-items-center" href="/GestaoClientes">
+            <a class="navbar-brand brand-logo d-flex align-items-center" href="/">
                 <i class="bi bi-gear-wide-connected me-2"></i>Roberto Enrico
             </a>
             
-            <a href="/GestaoClientes/admin" class="btn btn-outline-success btn-sm rounded-pill px-3 mt-3 mt-md-0 ms-md-auto">
+            <a href="/admin" class="btn btn-outline-success btn-sm rounded-pill px-3 mt-3 mt-md-0 ms-md-auto">
                 <i class="bi bi-person-fill"></i> 
                 <span class="ms-1">
                     <?= isset($_SESSION['username']) ? $_SESSION['username'] : 'Área Administrativa' ?>

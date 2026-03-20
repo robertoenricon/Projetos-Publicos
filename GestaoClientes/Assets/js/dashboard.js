@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $.getJSON('/GestaoClientes/list-customers')
+    $.getJSON('/list-customers')
         .done(function(customers) {
             $.each(customers, function(index, customer) {
                 addRow(customer);
@@ -134,7 +134,7 @@ function saveJSON() {
     });
 
     $.ajax({
-        url: '/GestaoClientes/save-customers',
+        url: '/save-customers',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data)

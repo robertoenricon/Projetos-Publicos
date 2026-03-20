@@ -9,16 +9,6 @@ use App\Controllers\AuthController;
 // Pega a URL vinda do navegador
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// AJUSTE PARA SUBPASTA: 
-// Remove "/GestaoClientes" da string para que o switch entenda apenas a rota interna.
-// Exemplo: "/GestaoClientes/dashboard" vira "/dashboard"
-$uri = str_replace('/GestaoClientes', '', $uri);
-
-// Garante que se a URL for vazia ou apenas "/", caia no case '/'
-if ($uri == '' || $uri == '/') {
-    $uri = '/';
-}
-
 switch ($uri) {
     case '/':
         (new HomeController())->index();
@@ -50,6 +40,6 @@ switch ($uri) {
 
     default:
         http_response_code(404);
-        echo "Página não encontrada dentro de GestaoClientes. URI processada: " . $uri;
+        echo "Página não encontrada. URI processada: " . $uri;
         break;
 }

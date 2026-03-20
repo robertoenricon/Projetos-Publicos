@@ -9,10 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/GestaoClientes/Assets/css/style.css">
-    <link rel="stylesheet" href="/GestaoClientes/Assets/css/admin.css">
+    <link rel="stylesheet" href="/Assets/css/style.css">
+    <link rel="stylesheet" href="/Assets/css/admin.css">
 
-    <link rel="icon" href="/GestaoClientes/Assets/images/image.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/Assets/images/image.png" type="image/png" sizes="16x16">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
         
         <div class="login-card w-100">
             <div class="text-center mb-4">
-                <a class="brand-logo text-decoration-none d-inline-flex align-items-center" href="/GestaoClientes">
+                <a class="brand-logo text-decoration-none d-inline-flex align-items-center" href="/">
                     <i class="bi bi-play-btn-fill me-2 icon-logo"></i>
                     <span>Roberto Enrico</span>
                 </a>
@@ -34,7 +34,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/GestaoClientes/login" method="POST">
+            <form action="/login" method="POST">
                 <div class="mb-3">
                     <label for="username" class="form-label text-light small">Usuário</label>
                     <div class="input-group custom-input-group">

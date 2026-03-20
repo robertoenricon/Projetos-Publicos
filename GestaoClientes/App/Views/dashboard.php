@@ -9,16 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/GestaoClientes/Assets/css/style.css">
-    <link rel="stylesheet" href="/GestaoClientes/Assets/css/dashboard.css">
+    <link rel="stylesheet" href="/Assets/css/style.css">
+    <link rel="stylesheet" href="/Assets/css/dashboard.css">
 
-    <link rel="icon" href="/GestaoClientes/Assets/images/image.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/Assets/images/image.png" type="image/png" sizes="16x16">
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-custom py-3">
         <div class="container-fluid px-4">
-            <a class="navbar-brand brand-logo d-flex align-items-center text-decoration-none" href="/GestaoClientes">
+            <a class="navbar-brand brand-logo d-flex align-items-center text-decoration-none" href="/">
                 <i class="bi bi-play-btn-fill me-2" style="color: #00c6ff;"></i>
                 <span>Roberto Enrico</span>
             </a>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="ms-auto">
-                <a href="/GestaoClientes/logout" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill px-3">
                     <i class="bi bi-box-arrow-right"></i> <span>Sair</span>
                 </a>
             </div>
@@ -99,7 +99,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/GestaoClientes/Assets/js/dashboard.js"></script>
+    <script src="/Assets/js/dashboard.js"></script>
     
 </body>
 </html>
