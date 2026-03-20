@@ -1,11 +1,9 @@
-version: '1.0'
-
 services:
   app:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: roberto-enrico-app
+    container_name: gestao-clientes
     ports:
       - "8080:80"
     volumes:

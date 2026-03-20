@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    // Fetch and list customers
-    $.getJSON('/list-customers')
+    $.getJSON('/GestaoClientes/list-customers')
         .done(function(customers) {
             $.each(customers, function(index, customer) {
                 addRow(customer);
@@ -10,7 +9,6 @@ $(document).ready(function() {
             console.error("Error loading customers", textStatus, errorThrown);
         });
 
-    // Event Listeners
     $('#btnNew').on('click', function() {
         addRow();
     });
@@ -37,7 +35,7 @@ $(document).ready(function() {
         $('#modalCustomerName').text(name);
         $('#modalCustomerPhone').val(phone);
         
-        const defaultMsg = `Hello ${name}, we noticed your renewal is due soon. Shall we renew?`;
+        const defaultMsg = `Olá ${name}, tudo bem? \nTem interesse em nossos produtos?`;
         $('#messageText').val(defaultMsg);
         
         const myModal = new bootstrap.Modal(document.getElementById('modalWhatsApp'));
@@ -136,7 +134,7 @@ function saveJSON() {
     });
 
     $.ajax({
-        url: '/save-customers',
+        url: '/GestaoClientes/save-customers',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data)
