@@ -1,45 +1,12 @@
 <?php
-session_start();
 
+// 1. Inicia a sessão (se não estiver iniciada)
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// 2. Carrega o autoload
 require_once 'autoload.php';
 
-use App\Controllers\HomeController;
-use App\Controllers\AuthController;
-
-// Pega a URL vinda do navegador
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-switch ($uri) {
-    case '/':
-        (new HomeController())->index();
-        break;
-
-    case '/admin':
-        (new AuthController())->loginForm();
-        break;
-
-    case '/dashboard':
-        (new AuthController())->dashboard();
-        break;
-
-    case '/login':
-        (new AuthController())->login();
-        break;
-
-    case '/logout':
-        (new AuthController())->logout();
-        break;
-
-    case '/save-customers':
-        (new App\Controllers\AuthController())->save();
-        break;
-
-    case '/list-customers':
-        (new App\Controllers\AuthController())->list();
-        break;
-
-    default:
-        http_response_code(404);
-        echo "Página não encontrada. URI processada: " . $uri;
-        break;
-}
+// 3. Chama o arquivo de rotas que você acabou de renomear
+require_once 'routes.php';

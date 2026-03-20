@@ -2,7 +2,8 @@
 namespace App\Controllers;
 
 /**
- * Controller responsável pela Landing Page
+ * Controller responsável pela Landing Page do sistema, onde o usuário pode acessar informações 
+ * sobre o sistema e realizar login.
  */
 class HomeController extends BaseController {
 
