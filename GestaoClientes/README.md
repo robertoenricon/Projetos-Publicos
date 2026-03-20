@@ -21,26 +21,31 @@ O projeto conta com uma Landing Page moderna e um Dashboard administrativo com p
 ```
 ├── App/
 │   ├── Config/
-│   │   └── AuthConfig.php      # Constantes de login (admin/senha)
+│   │   └── AuthConfig.php          # Constantes de login (usuário e senha)
 │   ├── Controllers/
-│   │   ├── BaseController.php  # Classe abstrata (métodos view e json)
-│   │   ├── HomeController.php  # Renderiza a Landing Page
-│   │   └── AuthController.php  # Gerencia Login, Logout e chamadas de API
+│   │   ├── BaseController.php      # Utilitários compartilhados (views, json, redirecionamentos e sessão)
+│   │   ├── HomeController.php      # Renderiza a Landing Page
+│   │   ├── AuthController.php      # Gerencia exclusivamente Autenticação (Login/Logout)
+│   │   ├── DashboardController.php # Renderiza o Painel de Gestão (Dashboard)
+│   │   └── ClientController.php    # Gerencia a API de clientes (save e list)
+│   ├── Middleware/
+│   │   └── AuthMiddleware.php      # Protege rotas restritas garantindo que o usuário está logado
 │   ├── Services/               
-│   │   └── ClienteService.php  # Logica para salvar os clientes (clientes.json)
+│   │   └── ClientService.php       # Regra de negócio para leitura e gravação no JSON
 │   └── Views/
-│       ├── home.php            # Landing Page
-│       ├── admin.php           # Formulário de Login
-│       └── dashboard.php       # Painel de Gestão (dashboard)
+│       ├── home.php                # View da Landing Page
+│       ├── admin.php               # View do Formulário de Login
+│       └── dashboard.php           # View do Painel de Gestão
 ├── Assets/
 │   └── css/
-│       └── style.css           # CSS Global
-│       └── admin.css           # CSS Formulário de Login
-│       └── dashboard.css       # CSS Dashboard
-├── config/                     # Dados de acesso
-├── clientes.json               # Json com os dados dos clientes
-├── .htaccess                   # Tratamento das rotas
-├── autoload.php                # Autoloader PSR-4
-├── index.php                   # Controle das rotas
-├── Dockerfile                  # Configuração PHP 7.3
-└── docker-compose.yml          # Config do Container
+│       ├── style.css               # CSS Global
+│       ├── admin.css               # CSS específico do Formulário de Login
+│       └── dashboard.css           # CSS específico do Dashboard
+├── config/                         # Dados de acesso (se houver configurações externas ao App/Config)
+├── clientes.json                   # Banco de dados local baseado em arquivo
+├── .htaccess                       # Regras do Apache (Redirecionamento para o roteador)
+├── autoload.php                    # Autoloader (Padrão PSR-4)
+├── index.php                       # Ponto de entrada / Inicialização da aplicação
+├── routes.php                      # Definição e controle das rotas e middlewares
+├── Dockerfile                      # Configuração da imagem PHP (versão compatível com a hospedagem)
+└── docker-compose.yml              # Orquestração do Container Docker
