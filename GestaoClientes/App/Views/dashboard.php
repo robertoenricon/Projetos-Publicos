@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
 <head>
+    <link rel="icon" href="/Assets/images/image.png" type="image/png" sizes="16x16">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Roberto Enrico</title>
@@ -12,10 +13,17 @@
     <link rel="stylesheet" href="/Assets/css/style.css">
     <link rel="stylesheet" href="/Assets/css/dashboard.css">
 
-    <link rel="icon" href="/Assets/images/image.png" type="image/png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Clientes">
+    <link rel="apple-touch-icon" href="/Assets/images/icon-192.png">
+
 </head>
 <body>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom py-3">
         <div class="container-fluid px-4">
             <a class="navbar-brand brand-logo d-flex align-items-center text-decoration-none" href="/">
@@ -38,6 +46,41 @@
         </div>
     </nav>
 
+    <!-- Alertas de Boas-Vindas e Instruções -->
+    <div class="container dashboard-container mb-5">
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div id="toastNotification" class="toast align-items-center text-white bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                <div class="toast-body">
+                    <strong>Habilite as notificações:</strong> 
+                    <p class="mb-2 mt-1">Receba alertas importantes sobre seus clientes diretamente no App.</p>
+                    <button id="btnAskPermission" class="btn btn-success btn-sm w-100">Permitir Notificações</button>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info alert-dismissible fade show mt-4" role="alert">
+            <h5 class="alert-heading mb-3">🔔 Bem-vindo ao Dashboard de Gestão de Clientes!</h5>
+            <p class="mb-0">Este painel foi desenvolvido para facilitar o acompanhamento das datas de renovação dos seus clientes e otimizar a comunicação via WhatsApp.</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+            <h5 class="alert-heading mb-3">📌 Como funcionam as notificações</h5>
+            <ul class="mb-0">
+                <li><strong>Habilite as notificações</strong> do seu navegador para receber os avisos.</li>
+                <li>Se a data atual for igual à data de renovação do cliente, chegará uma notificação.</li>
+                <li>Ao clicar no ícone do WhatsApp, e posteriormente clicar em "Enviar WhatsApp", essa notificação será marcada como concluída e não aparecerá ao entrar novamente (regra aplicada por cliente).</li>
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <strong>Atenção:</strong> Para clientes com status <strong>"Inativo"</strong>, o sistema não enviará notificação.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        </div>
+    </div>
+
+    <!-- Tabela de Clientes -->
     <div class="container dashboard-container mb-5">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
             <h3 class="fw-bold mb-0 text-center text-md-start">Gerenciamento de Clientes</h3>
@@ -72,6 +115,7 @@
         </div>
     </div>
 
+    <!-- Modal de Envio de WhatsApp -->
     <div class="modal fade" id="modalWhatsApp" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark text-white border-secondary">
@@ -88,7 +132,7 @@
                     <input type="hidden" id="modalCustomerPhone">
                 </div>
                 <div class="modal-footer border-secondary">
-                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar    </button>
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" id="btnConfirmSend" class="btn btn-success">
                         <i class="bi bi-whatsapp pe-2"></i>Enviar WhatsApp
                     </button>
@@ -99,7 +143,20 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/Assets/js/dashboard.js"></script>
+    <script src="/Assets/js/dashboard.js?v=<?= time(); ?>"></script>
+    <script src="/Assets/js/notification.js?v=<?= time(); ?>"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('Service Worker registrado com sucesso:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Falha ao registrar o Service Worker:', error);
+            });
+        }
+    </script>
     
 </body>
 </html>

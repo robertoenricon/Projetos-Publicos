@@ -1,0 +1,21 @@
+{
+  "name": "Roberto Enrico - Gestão de Clientes",
+  "short_name": "Gestão de Clientes",
+  "description": "Painel administrativo para gestão de clientes.",
+  "start_url": "/dashboard", 
+  "display": "standalone",
+  "background_color": "#000",
+  "theme_color": "#fff",
+  "icons": [
+    {
+      "src": "https://gestaoclientes.robertoenrico.com.br/Assets/images/dashboard-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://gestaoclientes.robertoenrico.com.br/Assets/images/dashboard-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

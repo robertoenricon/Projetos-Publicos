@@ -1,12 +1,19 @@
 $(document).ready(function() {
+
+    const toastElement = $('#toastNotification').get(0);
+    toastNotification(toastElement);
+
     $.getJSON('/list-customers')
         .done(function(customers) {
+            const customerList = [];
             $.each(customers, function(index, customer) {
                 addRow(customer);
+                customerList.push(customer);
             });
+            checkDailyRenewals(customerList);
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
-            console.error("Error loading customers", textStatus, errorThrown);
+            console.error("Erro ao carregar clientes", textStatus, errorThrown);
         });
 
     $('#btnNew').on('click', function() {
@@ -47,15 +54,30 @@ $(document).ready(function() {
         const message = $('#messageText').val();
         
         if (!phone) {
-            alert("Phone number not found.");
-            return;
+            alert("Número de celular não encontrado.");
+            return false;
         }
+
+        const todayDate = getTodayDate();
+        localStorage.setItem(`notified_${phone}_${todayDate}`, "true");
 
         const url = `https://wa.me/55${phone}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
         
         bootstrap.Modal.getInstance(document.getElementById('modalWhatsApp')).hide();
     });
+
+    $('#btnAskPermission').on('click', function() {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log('sdsadasd');
+                $('#alertMobileNotification').removeClass('show').addClass('d-none');
+                return false;
+            }
+            alert('Permissão bloqueada. Libere no cadeado do navegador.');
+        });
+    });
+
 });
 
 // Adds a new row to the table
@@ -67,13 +89,12 @@ function addRow(customer = {name: '', phone: '', date: '', status: 'Active'}) {
             <td class="ps-4 align-middle" contenteditable="true">${customer.name}</td>
             <td class="align-middle">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="customer-phone text-white" contenteditable="true" style="outline: none;">
-                        ${customer.phone}
-                    </div>
-                    
                     <button class="btn-whatsapp-circle btn-trigger-whatsapp" title="Send Message" data-name="${customer.name}">
                         <i class="bi bi-whatsapp"></i>
                     </button>
+                    <div class="customer-phone text-white" contenteditable="true" style="outline: none;">
+                        ${customer.phone}
+                    </div>
                 </div>
             </td>
             <td class="align-middle" contenteditable="true">${customer.date}</td>
@@ -150,4 +171,16 @@ function saveJSON() {
         alert("Erro de conexão ao salvar.");
         $btn.html('<i class="bi bi-cloud-arrow-up-fill"></i> Salvar Alterações');
     });
+}
+
+// Alert para o usuário habilitar as notificações
+function toastNotification(toastElement) {
+    
+    const toast = new bootstrap.Toast(toastElement, {
+        autohide: false
+    });
+    
+    if (Notification.permission !== "granted") {
+        toast.show();
+    }
 }

@@ -27,6 +27,14 @@
                 <p class="text-secondary mt-2 mb-0">Área Administrativa</p>
             </div>
 
+            <div class="alert alert-warning" role="alert">
+                <h5 class="alert-heading mb-3">📌 usuário e senha para teste</h5>
+                <ul class="mb-0">
+                    <li><strong>Usuário:</strong>admin</li>
+                    <li><strong>Senha:</strong>@@1234</li>
+                </ul>
+            </div>
+
             <?php if (!empty($error)): ?>
                 <div class="alert alert-custom d-flex align-items-center mb-4" role="alert">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i> 
