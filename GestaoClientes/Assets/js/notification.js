@@ -11,7 +11,7 @@ function getTodayDate() {
 function showRenewalNotification(name, renewalDate) {
     const options = {
         body: `A renovação do cliente ${name} está programada para hoje (${renewalDate}).`,
-        icon: "https://gestaoclientes.robertoenrico.com.br/Assets/images/dashboard-512.png",
+        icon: "https://gestaoclientes.robertoenrico.com.br/assets/images/dashboard-512.png",
         tag: `renewal-${name}`,
         vibrate: [200, 100, 200] // Adiciona uma vibração no celular
     };

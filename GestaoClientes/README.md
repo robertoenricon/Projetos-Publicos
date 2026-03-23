@@ -30,13 +30,15 @@ O projeto conta com uma Landing Page moderna e um Dashboard administrativo com p
 │   │   └── ClientController.php    # Gerencia a API de clientes (save e list)
 │   ├── Middleware/
 │   │   └── AuthMiddleware.php      # Protege rotas restritas garantindo que o usuário está logado
+|   ├── Models/
+│   │   └── ClientModel.php         # Esta Model realiza a persistência dos dados em um arquivo JSON
 │   ├── Services/               
-│   │   └── ClientService.php       # Regra de negócio para leitura e gravação no JSON
+│   │   └── ClientService.php       # Service responsável pelas regras de negócio dos clientes
 │   └── Views/
 │       ├── home.php                # View da Landing Page
 │       ├── admin.php               # View do Formulário de Login
 │       └── dashboard.php           # View do Painel de Gestão
-├── Assets/
+├── assets/
 │   └── css/
 │       ├── style.css               # CSS Global
 │       ├── admin.css               # CSS específico do Formulário de Login

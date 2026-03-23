@@ -1,54 +1,33 @@
 <?php
 namespace App\Services;
 
+use App\Models\ClientModel;
+
 /**
- * Service responsável pela persistência e leitura dos dados dos clientes em um arquivo JSON.
+ * Service responsável pelas regras de negócio dos clientes.
  */
-class ClientService {
-    
-    /**
-     * @var string Caminho absoluto para o arquivo de dados.
-     */
-    private $filePath;
+class ClientService
+{
+    private $clientModel;
 
-    public function __construct(string $filePath) {
-        $this->filePath = $filePath;
+    public function __construct(ClientModel $clientModel)
+    {
+        $this->clientModel = $clientModel;
     }
 
     /**
-     * Recupera e decodifica a lista de todos os clientes.
-     *
-     * @return array Retorna um array com os clientes ou um array vazio em caso de falha.
+     * Retorna todos os clientes
      */
-    public function findAll(): array {
-        if (!file_exists($this->filePath)) {
-            return [];
-        }
-        
-        $fileContent = file_get_contents($this->filePath);
-        
-        if ($fileContent === false) {
-            return [];
-        }
-
-        $decodedData = json_decode($fileContent, true);
-
-        return is_array($decodedData) ? $decodedData : [];
+    public function findAll(): array
+    {
+        return $this->clientModel->findAll();
     }
 
     /**
-     * Converte o array de clientes em JSON e salva no arquivo.
-     *
-     * @param array $data Array contendo os dados dos clientes a serem salvos.
-     * @return bool
+     * Salva clientes
      */
-    public function store(array $data): bool {
-        $json = json_encode($data, JSON_PRETTY_PRINT);
-        
-        if ($json === false) {
-            return false;
-        }
-
-        return file_put_contents($this->filePath, $json) !== false;
+    public function store(array $data): void
+    {
+        $this->clientModel->save($data);
     }
 }

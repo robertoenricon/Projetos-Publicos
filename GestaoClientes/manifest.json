@@ -8,12 +8,12 @@
   "theme_color": "#fff",
   "icons": [
     {
-      "src": "https://gestaoclientes.robertoenrico.com.br/Assets/images/dashboard-128.png",
+      "src": "https://gestaoclientes.robertoenrico.com.br/assets/images/dashboard-128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "https://gestaoclientes.robertoenrico.com.br/Assets/images/dashboard-512.png",
+      "src": "https://gestaoclientes.robertoenrico.com.br/assets/images/dashboard-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

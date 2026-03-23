@@ -6,23 +6,24 @@ use App\Controllers\DashboardController;
 use App\Controllers\ClientController;
 use App\Middleware\AuthMiddleware;
 use App\Services\ClientService;
+use App\Models\ClientModel;
 
 // Pega a URL vinda do navegador
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// 1. Array de rotas que exigem o usuário logado
+// 1. Rotas protegidas
 $rotasProtegidas = [
     '/dashboard',
     '/save-customers',
     '/list-customers'
 ];
 
-// 2. Aplica o Middleware automaticamente se a rota for protegida
+// 2. Middleware
 if (in_array($uri, $rotasProtegidas)) {
     (new AuthMiddleware())->handle();
 }
 
-// 3. Roteamento para os Controllers corretos
+// 3. Roteamento
 switch ($uri) {
     case '/':
         (new HomeController())->index();
@@ -45,15 +46,20 @@ switch ($uri) {
         break;
 
     case '/save-customers':
-        // Passando o caminho absoluto do arquivo
-        $caminhoArquivo = __DIR__ . '/clientes.json'; 
-        $clientService = new ClientService($caminhoArquivo);
+        $filePath = __DIR__ . '/clientes.json';
+
+        $clientModel = new ClientModel($filePath);
+        $clientService = new ClientService($clientModel);
+
         (new ClientController($clientService))->save();
         break;
 
     case '/list-customers':
-        $caminhoArquivo = __DIR__ . '/clientes.json';
-        $clientService = new ClientService($caminhoArquivo);
+        $filePath = __DIR__ . '/clientes.json';
+
+        $clientModel = new ClientModel($filePath);
+        $clientService = new ClientService($clientModel);
+
         (new ClientController($clientService))->list();
         break;
 

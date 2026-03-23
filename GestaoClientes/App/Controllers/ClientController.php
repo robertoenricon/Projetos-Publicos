@@ -5,45 +5,63 @@ use App\Services\ClientService;
 
 /**
  * Controlador responsável por lidar com as requisições relacionadas aos clientes.
- * Ele recebe as requisições do Dashboard, processa os dados e interage com o ClientService.
- * Salvar ou recuperar as informações dos clientes. 
- * O controlador também é responsável por retornar o status para o Dashboard.
  */
-class ClientController extends BaseController {
-
+class ClientController extends BaseController
+{
     private $clientService;
 
-    public function __construct(ClientService $clientService) {
+    public function __construct(ClientService $clientService)
+    {
         $this->clientService = $clientService;
     }
 
     /**
-     * Salva a lista de clientes enviada pelo Dashboard
+     * Valida a lista de clientes enviada pelo Dashboard
      */
-    public function save() {
-
+    public function save()
+    {
         $input = file_get_contents('php://input');
         $data = json_decode($input, true);
 
-        if ($data === null) {
-            return $this->json(['erro' => 'Formato de dados inválido'], 400);
+        // Verifica JSON inválido
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return $this->json([
+                'erro' => 'JSON inválido: ' . json_last_error_msg()
+            ], 400);
         }
 
-        if ($this->clientService->store($data)) {
-            return $this->json(['status' => 'sucesso']);
+        if (empty($data)) {
+            return $this->json([
+                'erro' => 'Dados vazios'
+            ], 422);
         }
 
-        return $this->json(['erro' => 'Falha ao salvar arquivo no servidor'], 500);
+        try {
+            $this->clientService->store($data);
+
+            return $this->json([
+                'status' => 'sucesso'
+            ]);
+        } catch (\Exception $e) {
+            return $this->json([
+                'erro' => 'Erro ao salvar: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
      * Retorna o conteúdo do JSON para preencher a tabela
      */
-    public function list() {
+    public function list()
+    {
+        try {
+            $clientes = $this->clientService->findAll();
 
-        $clientes = $this->clientService->findAll();
-        
-        return $this->json($clientes);
+            return $this->json($clientes);
+        } catch (\Exception $e) {
+            return $this->json([
+                'erro' => 'Erro ao buscar dados'
+            ], 500);
+        }
     }
-    
 }

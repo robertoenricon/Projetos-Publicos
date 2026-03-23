@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
 <head>
-    <link rel="icon" href="/Assets/images/image.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/assets/images/image.png" type="image/png" sizes="16x16">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Roberto Enrico</title>
@@ -10,15 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Assets/css/style.css">
-    <link rel="stylesheet" href="/Assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
 
     <link rel="manifest" href="/manifest.json">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Clientes">
-    <link rel="apple-touch-icon" href="/Assets/images/icon-192.png">
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png">
 
 </head>
 <body>
@@ -143,8 +143,8 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/Assets/js/dashboard.js?v=<?= time(); ?>"></script>
-    <script src="/Assets/js/notification.js?v=<?= time(); ?>"></script>
+    <script src="/assets/js/dashboard.js?v=<?= time(); ?>"></script>
+    <script src="/assets/js/notification.js?v=<?= time(); ?>"></script>
 
     <script>
         if ('serviceWorker' in navigator) {

@@ -6,9 +6,9 @@
     <title>Roberto Enrico - Aluguel de Filmes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/Assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
-    <link class="icon-cycling" rel="icon" type="image/png" sizes="32x32" href="/Assets/images/image.png">
+    <link class="icon-cycling" rel="icon" type="image/png" sizes="32x32" href="/assets/images/image.png">
 </head>
 <body>
 

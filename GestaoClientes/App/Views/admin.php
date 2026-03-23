@@ -9,10 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Assets/css/style.css">
-    <link rel="stylesheet" href="/Assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
 
-    <link rel="icon" href="/Assets/images/image.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/assets/images/image.png" type="image/png" sizes="16x16">
 </head>
 <body>
 
