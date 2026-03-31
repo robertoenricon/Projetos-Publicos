@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'sabesp' => [
+        'base_url' => env('SABESP_API_URL'),
+    ],
+
 ];
