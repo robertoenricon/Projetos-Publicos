@@ -23,6 +23,10 @@
         </div>
     </div>
 
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        Atualizações disponíveis a partir das 9hs.
+    </div>
+
     <div id="app" data-initial-date="{{ now()->setTimezone('America/Sao_Paulo')->format('Y-m-d') }}" data-api-url="{{ url('/api/sabesp') }}"></div>
 
 </div>

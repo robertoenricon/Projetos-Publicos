@@ -131,7 +131,6 @@ onMounted(() => {
 <style scoped>
 .dashboard-header {
     background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-    border-radius: 1rem 1rem 0 0;
 }
 .table > :not(caption) > * > * {
     padding: 1rem 0.75rem;

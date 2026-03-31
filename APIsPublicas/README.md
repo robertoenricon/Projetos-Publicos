@@ -1,9 +1,9 @@
-========================= LARAVEL =======================
+# ========================= LARAVEL =======================
 
 # 1 
 - Dockerfile & docker-compose.yml
 # 2 
-- docker-compose up -d --build
+- docker-compose up -d --build (derrubar: docker-compose down)
 # ENTRAR NO APP DO VITE 
 - docker exec -it laravel_vite bash
 # 4 - Instalar o Laravel:
@@ -25,3 +25,6 @@
 - docker exec -it apis_publicas_app bash
 Atalho: 
 - alias exec="docker exec -it apis_publicas_app bash"
+
+
+# ========================= PREPARAR PARA PRODUÇÃO ======================

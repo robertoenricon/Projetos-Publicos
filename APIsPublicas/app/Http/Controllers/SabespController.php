@@ -33,8 +33,11 @@ class SabespController extends Controller
             $systemsMap = collect($systems)->pluck('name', 'id')->toArray();
 
             $formattedData = collect($summaries)->map(function ($summary) use ($systemsMap) {
+                $nameSystem = $systemsMap[$summary['idSistema']] ?? 'Desconhecido';
+                $nameSystem = trim(preg_replace('/sistema/i', '', $nameSystem));
+
                 return [
-                    'Nome' => $systemsMap[$summary['idSistema']] ?? 'Sistema Desconhecido',
+                    'Nome' => $nameSystem,
                     'VolumePorcentagem' => number_format($summary['volumeUtilArmazenadoPorcentagem'] ?? 0, 1, ',', '.'),
                     'PluviometriaDia' => number_format($summary['chuva'] ?? 0, 1, ',', '.'),
                     'PluviometriaAcumuladaMes' => number_format($summary['chuvaAcumuladaNoMes'] ?? 0, 1, ',', '.')
