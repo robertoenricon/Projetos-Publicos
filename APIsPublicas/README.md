@@ -20,14 +20,14 @@ Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 - rm -rf temp_app
 
 # ⚙️ Configuração inicial
+**1.**
 - cp .env.example .env
 - rm -rf vendor && composer install
 - php artisan key:generate
 - chmod -R 777 storage
 - chmod -R 777 bootstrap/cache
 - php artisan storage:link
-
-**1. Frontend (opcional, já configurado no YML)**
+**2. Frontend (opcional, já configurado no YML)**
 - rm -rf node_modules
 - npm install
 - npm run dev
@@ -83,7 +83,6 @@ apispublicas_laravel/   # todo o Laravel (fora da web)
     └── app-DZ4nVVRQ.css
 
 ## ✅ Observações
-
 - Sempre verificar permissões de pasta (storage e bootstrap/cache).
 - Em produção, não usar pacotes de desenvolvimento.
 - O public_html deve conter apenas os arquivos acessíveis pelo usuário final.
