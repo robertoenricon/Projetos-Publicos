@@ -8,7 +8,7 @@ Este README documenta os passos para configurar, rodar e preparar um projeto Lar
 - Dockerfile & docker-compose.yml
 
 **2. Subir containers**
-- docker-compose up -d --build
+- docker-compose up -d --build (se der erro, tira o -d para ver o log)
 
 **4. Entrar no container do Vite**
 - **docker exec -it laravel_vite bash** ou **docker-compose exec vite bash**
