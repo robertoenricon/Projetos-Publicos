@@ -1,70 +1,103 @@
-# ========================= LARAVEL =======================
+📘 Guia Laravel com Docker
 
-# 1 
-- Dockerfile & docker-compose.yml
-# 2 
-- docker-compose up -d --build (derrubar: docker-compose down)
-# ENTRAR NO APP DO VITE 
-- docker exec -it laravel_vite bash
-# 4 - Instalar o Laravel:
-- composer create-project laravel/laravel temp_app
-- cp -a temp_app/. .
-- rm -rf temp_app
-# 5 
-- cp .env.example .env
-# 6 
-- rm -rf vendor && composer install
-# 7 
-- php artisan key:generate (caso de erro de permissao, rodar: chown -R www-data:www-data /var/www)
-# 8 
-- chmod -R 777 storage && chmod -R 777 bootstrap/cache
-# 9
-- php artisan storage:link
-# 10 (opcional, pois isso já esta no YML)
-- rm -rf node_modules && npm install && npm run dev
+Este README documenta os passos para configurar, rodar e preparar um projeto Laravel utilizando Docker e Vite, além de instruções para produção e deploy via FTP.
 
-# Obs: manipular o container:
-- docker exec -it laravel_app bash ou docker-compose exec app bash
-Atalho: 
-- alias exec="docker exec -it laravel_app bash"
+🐳 Ambiente de Desenvolvimento
 
+1. Arquivos iniciais
 
-# ========================= PREPARAR PARA PRODUÇÃO ======================
+Dockerfile
 
-# 1 (.env)
-- APP_URL=http://apispublicas.robertoenrico.com.br/
-- APP_ENV=prod
-- APP_DEBUG=false
+docker-compose.yml
 
-# 2
-- docker exec -it laravel_app bash
+2. Subir containers
 
-# 3
-# --no-dev (remove pacotes de desenvolvimento)
-# --optimize-autoloader (melhora a performance)
+docker-compose up -d --build
+# Derrubar containers:
+docker-compose down
+
+3. Entrar no container do Vite
+
+docker exec -it laravel_vite bash
+
+4. Instalar Laravel
+
+composer create-project laravel/laravel temp_app
+cp -a temp_app/. .
+rm -rf temp_app
+
+5. Configuração inicial
+
+cp .env.example .env
+rm -rf vendor && composer install
+php artisan key:generate
+
+⚠️ Caso ocorra erro de permissão:
+
+chown -R www-data:www-data /var/www
+
+6. Permissões
+
+chmod -R 777 storage
+chmod -R 777 bootstrap/cache
+
+7. Links de storage
+
+php artisan storage:link
+
+8. Frontend (opcional, já configurado no YML)
+
+rm -rf node_modules
+npm install
+npm run dev
+
+9. Manipular container
+
+docker exec -it laravel_app bash
+# ou
+docker-compose exec app bash
+
+Atalho sugerido:
+
+alias exec="docker exec -it laravel_app bash"
+
+🚀 Preparar para Produção
+
+1. Configuração .env
+
+APP_URL=http://apispublicas.robertoenrico.com.br/
+APP_ENV=prod
+APP_DEBUG=false
+
+2. Acessar container
+
+docker exec -it laravel_app bash
+
+3. Instalar dependências otimizadas
+
 composer install --optimize-autoloader --no-dev
 
-# 4
-- php artisan key:generate
+4. Gerar chave
 
-# 5 (vite)
-- docker-compose exec vite bash
-- npm install
-- npm run build
+php artisan key:generate
 
-# 6 (voltar para o APP) (Otimizar Laravel para produção)
-- docker-compose exec app bash
-- php artisan view:clear
-- php artisan config:clear
-- php artisan cache:clear
-- php artisan route:clear
+5. Build do Vite
 
-# ========================= FTP ================================
+docker-compose exec vite bash
+npm install
+npm run build
 
-# 1 - 
+6. Otimizar Laravel
 
-# 2 - 
-├── apispublicas_laravel/          <- todo o Laravel (fora da web)
+docker-compose exec app bash
+php artisan view:clear
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+
+📂 Estrutura para FTP
+
+apispublicas_laravel/   <- todo o Laravel (fora da web)
 │   ├── app/
 │   ├── bootstrap/
 │   ├── config/
@@ -72,18 +105,26 @@ composer install --optimize-autoloader --no-dev
 │   ├── resources/
 │   ├── routes/
 │   ├── storage/
-│   ├── vendor/ (compacta em arquivo .zip e dps descompacta direto no ftp)
-│   └── .env
-│   └── composer.json
-│   └── composer.lock
+│   ├── vendor/         (compactar em .zip e descompactar no FTP)
+│   ├── .env
+│   ├── composer.json
+│   ├── composer.lock
 │   └── artisan
-└── public_html/              <- apenas o que o usuário vê
-│   ├── index.php
-│   ├── .htaccess
-│   ├── favicon.ico
-│   ├── robots.txt
-│   ├── build
-|   ├── manifest
-│       ├── assets/
-│           ├── app-DZ4nVVRQ.js
-│           ├── app-DZ4nVVRQ.css
+└── public_html/        <- apenas o que o usuário acessa
+    ├── index.php
+    ├── .htaccess
+    ├── favicon.ico
+    ├── robots.txt
+    ├── build/
+    ├── manifest
+    ├── assets/
+    ├── app-DZ4nVVRQ.js
+    └── app-DZ4nVVRQ.css
+
+✅ Observações
+
+Sempre verificar permissões de pasta (storage e bootstrap/cache).
+
+Em produção, não usar pacotes de desenvolvimento.
+
+O public_html deve conter apenas os arquivos acessíveis pelo usuário final.
