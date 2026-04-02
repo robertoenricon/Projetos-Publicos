@@ -1,14 +1,12 @@
-📘 Guia Laravel com Docker
+# 📘 Guia Laravel com Docker
 
 Este README documenta os passos para configurar, rodar e preparar um projeto Laravel utilizando Docker e Vite, além de instruções para produção e deploy via FTP.
 
-🐳 Ambiente de Desenvolvimento
+# 🐳 Ambiente de Desenvolvimento
 
-1. Arquivos iniciais
-
-Dockerfile
-
-docker-compose.yml
+**1. Arquivos iniciais**
+- Dockerfile
+- docker-compose.yml
 
 2. Subir containers
 
