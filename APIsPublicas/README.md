@@ -20,14 +20,13 @@ Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 - rm -rf temp_app
 
 # ⚙️ Configuração inicial
-**1.**
 - cp .env.example .env
 - rm -rf vendor && composer install
 - php artisan key:generate
 - chmod -R 777 storage
 - chmod -R 777 bootstrap/cache
 - php artisan storage:link
-**2. Frontend (opcional, já configurado no YML)**
+- **Frontend (opcional, já configurado no YML)**
 - rm -rf node_modules
 - npm install
 - npm run dev
@@ -58,7 +57,7 @@ Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 
 ## 📂 Estrutura para FTP
 
-apispublicas_laravel/   # todo o Laravel (fora da web)
+apispublicas_laravel/        # Todo o Laravel (fora da web)
 │   ├── app/
 │   ├── bootstrap/
 │   ├── config/
@@ -66,21 +65,22 @@ apispublicas_laravel/   # todo o Laravel (fora da web)
 │   ├── resources/
 │   ├── routes/
 │   ├── storage/
-│   ├── vendor/         # (compactar em .zip e descompactar no FTP)
+│   ├── vendor/              # Compactar em .zip e descompactar no FTP
 │   ├── .env
 │   ├── composer.json
 │   ├── composer.lock
 │   └── artisan
-└── public_html/        # apenas o que o usuário acessa
-    ├── index.php
-    ├── .htaccess
-    ├── favicon.ico
-    ├── robots.txt
-    ├── build/
-    ├── manifest
-    ├── assets/
-    ├── app-DZ4nVVRQ.js
-    └── app-DZ4nVVRQ.css
+
+public_html/                 # Apenas o que o usuário acessa
+│   ├── index.php
+│   ├── .htaccess
+│   ├── favicon.ico
+│   ├── robots.txt
+│   ├── build/
+│   ├── manifest
+│   ├── assets/
+│   ├── app-DZ4nVVRQ.js
+│   └── app-DZ4nVVRQ.css
 
 ## ✅ Observações
 - Sempre verificar permissões de pasta (storage e bootstrap/cache).
