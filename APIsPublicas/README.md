@@ -56,7 +56,7 @@ Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 
 
 ## 📂 Estrutura para FTP
-
+```
 apispublicas_laravel/        # Todo o Laravel (fora da web)
 │   ├── app/
 │   ├── bootstrap/
