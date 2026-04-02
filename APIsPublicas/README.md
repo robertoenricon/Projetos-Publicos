@@ -33,11 +33,11 @@ Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 
 ## 🚀 Preparar para Produção
 
-**1. Configuração .env**
+- **1. Configuração .env**
 - APP_URL=http://apispublicas.robertoenrico.com.br/
 - APP_ENV=prod
 - APP_DEBUG=false
-**2. Acessar container**
+- **2. Acessar container**
 - docker exec -it laravel_app bash
 **3. Instalar dependências otimizadas**
 - composer install --optimize-autoloader --no-dev
