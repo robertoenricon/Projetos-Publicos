@@ -1,4 +1,4 @@
-# 🚀📌 Projetos Públicos
+# 🚀 Projetos Públicos
 
 Este repositório tem foco **educacional**.  
 Aqui você encontrará modelos e exemplos criados por mim, com o objetivo de demonstrar conhecimentos e práticas de desenvolvimento.
