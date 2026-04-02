@@ -11,7 +11,7 @@ Este README documenta os passos para configurar, rodar e preparar um projeto Lar
 - docker-compose up -d --build
 
 **4. Entrar no container do Vite**
-- docker exec -it laravel_vite bash ou docker-compose exec vite bash
+- **docker exec -it laravel_vite bash** ou **docker-compose exec vite bash**
 - Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 
 **5. Instalar Laravel**
