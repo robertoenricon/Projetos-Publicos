@@ -32,7 +32,7 @@ Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 - npm install
 - npm run dev
 
-** ## 🚀 Preparar para Produção**
+## 🚀 Preparar para Produção
 
 **1. Configuração .env**
 - APP_URL=http://apispublicas.robertoenrico.com.br/
