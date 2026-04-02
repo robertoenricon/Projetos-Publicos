@@ -26,7 +26,7 @@ Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 - chmod -R 777 storage
 - chmod -R 777 bootstrap/cache
 - php artisan storage:link
-- **Frontend (opcional, já configurado no YML)**
+**Frontend (opcional, já configurado no YML)**
 - rm -rf node_modules
 - npm install
 - npm run dev
