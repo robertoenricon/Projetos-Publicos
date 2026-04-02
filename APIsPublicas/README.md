@@ -5,97 +5,60 @@ Este README documenta os passos para configurar, rodar e preparar um projeto Lar
 # 🐳 Ambiente de Desenvolvimento
 
 **1. Arquivos iniciais**
-- Dockerfile
-- docker-compose.yml
+- Dockerfile & docker-compose.yml
 
-2. Subir containers
+**2. Subir containers**
+- docker-compose up -d --build
 
-docker-compose up -d --build
-# Derrubar containers:
-docker-compose down
+**4. Entrar no container do Vite**
+- docker exec -it laravel_vite bash ou docker-compose exec vite bash
+Obs: Atalho sugerido -> alias vite="docker exec -it laravel_vite bash"
 
-3. Entrar no container do Vite
+**5. Instalar Laravel**
+- composer create-project laravel/laravel temp_app
+- cp -a temp_app/..
+- rm -rf temp_app
 
-docker exec -it laravel_vite bash
+# ⚙️ Configuração inicial
+- cp .env.example .env
+- rm -rf vendor && composer install
+- php artisan key:generate
+- chmod -R 777 storage
+- chmod -R 777 bootstrap/cache
+- php artisan storage:link
 
-4. Instalar Laravel
+**1. Frontend (opcional, já configurado no YML)**
+- rm -rf node_modules
+- npm install
+- npm run dev
 
-composer create-project laravel/laravel temp_app
-cp -a temp_app/. .
-rm -rf temp_app
+** ## 🚀 Preparar para Produção**
 
-5. Configuração inicial
+**1. Configuração .env**
+- APP_URL=http://apispublicas.robertoenrico.com.br/
+- APP_ENV=prod
+- APP_DEBUG=false
+**2. Acessar container**
+- docker exec -it laravel_app bash
+**3. Instalar dependências otimizadas**
+- composer install --optimize-autoloader --no-dev
+**4. Gerar chave**
+- php artisan key:generate
+**5. Build do Vite**
+- docker-compose exec vite bash
+- npm install
+- npm run build
+**6. Otimizar Laravel**
+- docker-compose exec app bash
+- php artisan view:clear
+- php artisan config:clear
+- php artisan cache:clear
+- php artisan route:clear
 
-cp .env.example .env
-rm -rf vendor && composer install
-php artisan key:generate
 
-⚠️ Caso ocorra erro de permissão:
+## 📂 Estrutura para FTP
 
-chown -R www-data:www-data /var/www
-
-6. Permissões
-
-chmod -R 777 storage
-chmod -R 777 bootstrap/cache
-
-7. Links de storage
-
-php artisan storage:link
-
-8. Frontend (opcional, já configurado no YML)
-
-rm -rf node_modules
-npm install
-npm run dev
-
-9. Manipular container
-
-docker exec -it laravel_app bash
-# ou
-docker-compose exec app bash
-
-Atalho sugerido:
-
-alias exec="docker exec -it laravel_app bash"
-
-🚀 Preparar para Produção
-
-1. Configuração .env
-
-APP_URL=http://apispublicas.robertoenrico.com.br/
-APP_ENV=prod
-APP_DEBUG=false
-
-2. Acessar container
-
-docker exec -it laravel_app bash
-
-3. Instalar dependências otimizadas
-
-composer install --optimize-autoloader --no-dev
-
-4. Gerar chave
-
-php artisan key:generate
-
-5. Build do Vite
-
-docker-compose exec vite bash
-npm install
-npm run build
-
-6. Otimizar Laravel
-
-docker-compose exec app bash
-php artisan view:clear
-php artisan config:clear
-php artisan cache:clear
-php artisan route:clear
-
-📂 Estrutura para FTP
-
-apispublicas_laravel/   <- todo o Laravel (fora da web)
+apispublicas_laravel/   # todo o Laravel (fora da web)
 │   ├── app/
 │   ├── bootstrap/
 │   ├── config/
@@ -103,12 +66,12 @@ apispublicas_laravel/   <- todo o Laravel (fora da web)
 │   ├── resources/
 │   ├── routes/
 │   ├── storage/
-│   ├── vendor/         (compactar em .zip e descompactar no FTP)
+│   ├── vendor/         # (compactar em .zip e descompactar no FTP)
 │   ├── .env
 │   ├── composer.json
 │   ├── composer.lock
 │   └── artisan
-└── public_html/        <- apenas o que o usuário acessa
+└── public_html/        # apenas o que o usuário acessa
     ├── index.php
     ├── .htaccess
     ├── favicon.ico
@@ -119,10 +82,8 @@ apispublicas_laravel/   <- todo o Laravel (fora da web)
     ├── app-DZ4nVVRQ.js
     └── app-DZ4nVVRQ.css
 
-✅ Observações
+## ✅ Observações
 
-Sempre verificar permissões de pasta (storage e bootstrap/cache).
-
-Em produção, não usar pacotes de desenvolvimento.
-
-O public_html deve conter apenas os arquivos acessíveis pelo usuário final.
+- Sempre verificar permissões de pasta (storage e bootstrap/cache).
+- Em produção, não usar pacotes de desenvolvimento.
+- O public_html deve conter apenas os arquivos acessíveis pelo usuário final.
