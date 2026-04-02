@@ -81,6 +81,7 @@ public_html/                 # Apenas o que o usuário acessa
 │   ├── assets/
 │   ├── app-DZ4nVVRQ.js
 │   └── app-DZ4nVVRQ.css
+```
 
 ## ✅ Observações
 - Sempre verificar permissões de pasta (storage e bootstrap/cache).
