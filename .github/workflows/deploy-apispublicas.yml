@@ -17,7 +17,6 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      # ===== NODE (VITE) =====
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -46,24 +45,11 @@ jobs:
           echo "==== MANIFEST ===="
           cat APIsPublicas/public/build/manifest.json
 
-      # ===== COMPOSER (LARAVEL) =====
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          tools: composer
-
-      - name: Instalar dependências PHP
-        working-directory: APIsPublicas
-        run: composer install --no-dev --optimize-autoloader
-
-      # ===== PREPARAR DEPLOY =====
-      # OBS: Primeira vez subir a vendor manualmente .zipada
       - name: Montar estrutura
         run: |
           rm -rf deploy
           mkdir -p deploy/apispublicas_laravel
-          mkdir -p deploy/public_html
+          mkdir -p deploy/public_html/apispublicas
 
           rsync -av \
             --exclude='public' \
@@ -75,19 +61,18 @@ jobs:
             --exclude='vendor' \
             APIsPublicas/ deploy/apispublicas_laravel/
 
-          rsync -av APIsPublicas/public/ deploy/public_html/
+          rsync -av --delete APIsPublicas/public/ deploy/public_html/apispublicas/
 
-      # ===== INDEX CORRIGIDO =====
       - name: Ajustar index.php
         run: |
-          cat > deploy/public_html/index.php <<'PHP'
+          cat > deploy/public_html/apispublicas/index.php <<'PHP'
           <?php
 
           use Illuminate\Http\Request;
 
           define('LARAVEL_START', microtime(true));
 
-          $basePath = realpath(__DIR__ . '/../apispublicas_laravel');
+          $basePath = realpath(__DIR__ . '/../../apispublicas_laravel');
 
           if ($basePath === false) {
               die('Base path não encontrado.');
@@ -106,7 +91,6 @@ jobs:
           $app->handleRequest(Request::capture());
           PHP
 
-      # ===== FTP =====
       - name: Deploy FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
