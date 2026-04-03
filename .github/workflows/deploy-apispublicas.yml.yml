@@ -1,0 +1,105 @@
+name: Deploy APIsPublicas
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'APIsPublicas/**'
+      - '.github/workflows/deploy-apispublicas.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      # ===== NODE (VITE) =====
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências front
+        working-directory: APIsPublicas
+        run: npm install
+
+      - name: Build assets
+        working-directory: APIsPublicas
+        run: npm run build
+
+      # ===== COMPOSER (LARAVEL) =====
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Instalar dependências PHP
+        working-directory: APIsPublicas
+        run: composer install --no-dev --optimize-autoloader
+
+      # ===== PREPARAR DEPLOY =====
+      - name: Montar estrutura
+        run: |
+          mkdir -p deploy/apispublicas_laravel
+          mkdir -p deploy/public_html
+
+          rsync -av --delete \
+            --exclude='public' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='tests' \
+            --exclude='.env' \
+            APIsPublicas/ deploy/apispublicas_laravel/
+
+          rsync -av APIsPublicas/public/ deploy/public_html/
+
+      # ===== INDEX CORRIGIDO =====
+      - name: Ajustar index.php
+        run: |
+          cat > deploy/public_html/index.php <<'PHP'
+          <?php
+
+          use Illuminate\Http\Request;
+
+          define('LARAVEL_START', microtime(true));
+
+          $basePath = realpath(__DIR__ . '/../apispublicas_laravel');
+
+          if ($basePath === false) {
+              die('Base path não encontrado.');
+          }
+
+          require $basePath . '/vendor/autoload.php';
+
+          if (file_exists($maintenance = $basePath . '/storage/framework/maintenance.php')) {
+              require $maintenance;
+          }
+
+          $app = require_once $basePath . '/bootstrap/app.php';
+
+          $app->usePublicPath(__DIR__);
+
+          $app->handleRequest(Request::capture());
+          PHP
+
+      # ===== FTP =====
+      - name: Deploy FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER_APIS }}
+          username: ${{ secrets.FTP_USERNAME_APIS }}
+          password: ${{ secrets.FTP_PASSWORD_APIS }}
+          local-dir: ./deploy/
+          server-dir: /
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/**
+            **/tests/**
+            **/.env
