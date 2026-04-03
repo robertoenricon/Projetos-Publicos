@@ -51,20 +51,7 @@ jobs:
           mkdir -p deploy/apispublicas_laravel
           mkdir -p deploy/public_html/apispublicas
 
-          rsync -av \
-          --exclude='public' \
-          --exclude='.git' \
-          --exclude='.github' \
-          --exclude='node_modules' \
-          --exclude='tests' \
-          --exclude='.env' \
-          --exclude='vendor' \
-          --exclude='storage/framework/views' \
-          --exclude='bootstrap/cache/*.php' \
-          --exclude='storage/logs' \
-          APIsPublicas/ deploy/apispublicas_laravel/
-
-          rsync -av --delete APIsPublicas/public/ deploy/public_html/apispublicas/
+          
       
       - name: Limpar caches do Laravel no pacote
         run: |
