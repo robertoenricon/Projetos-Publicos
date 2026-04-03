@@ -43,6 +43,7 @@ jobs:
         run: composer install --no-dev --optimize-autoloader
 
       # ===== PREPARAR DEPLOY =====
+      # OBS: Primeira vez subir a vendor manualmente .zipada
       - name: Montar estrutura
         run: |
           mkdir -p deploy/apispublicas_laravel
@@ -55,6 +56,7 @@ jobs:
             --exclude='node_modules' \
             --exclude='tests' \
             --exclude='.env' \
+            --exclude='vendor' \ 
             APIsPublicas/ deploy/apispublicas_laravel/
 
           rsync -av APIsPublicas/public/ deploy/public_html/
@@ -103,3 +105,4 @@ jobs:
             **/node_modules/**
             **/tests/**
             **/.env
+            **/vendor/**
