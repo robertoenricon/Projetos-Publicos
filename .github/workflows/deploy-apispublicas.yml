@@ -52,14 +52,17 @@ jobs:
           mkdir -p deploy/public_html/apispublicas
 
           rsync -av \
-            --exclude='public' \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='node_modules' \
-            --exclude='tests' \
-            --exclude='.env' \
-            --exclude='vendor' \
-            APIsPublicas/ deploy/apispublicas_laravel/
+          --exclude='public' \
+          --exclude='.git' \
+          --exclude='.github' \
+          --exclude='node_modules' \
+          --exclude='tests' \
+          --exclude='.env' \
+          --exclude='vendor' \
+          --exclude='storage/framework/views' \
+          --exclude='bootstrap/cache/*.php' \
+          --exclude='storage/logs' \
+          APIsPublicas/ deploy/apispublicas_laravel/
 
           rsync -av --delete APIsPublicas/public/ deploy/public_html/apispublicas/
       
@@ -67,6 +70,7 @@ jobs:
         run: |
           find deploy/apispublicas_laravel/bootstrap/cache -type f ! -name '.gitignore' -delete || true
           find deploy/apispublicas_laravel/storage/framework/views -type f ! -name '.gitignore' -delete || true
+          find deploy/apispublicas_laravel/storage/logs -type f ! -name '.gitignore' -delete || true
 
       - name: Ajustar index.php
         run: |
