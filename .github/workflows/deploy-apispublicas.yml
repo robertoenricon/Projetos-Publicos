@@ -31,6 +31,11 @@ jobs:
         working-directory: APIsPublicas
         run: npm run build
 
+      - name: Verificar manifest
+        run: |
+          echo "==== MANIFEST ===="
+          cat APIsPublicas/public/build/manifest.json
+
       # ===== COMPOSER (LARAVEL) =====
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -46,6 +51,7 @@ jobs:
       # OBS: Primeira vez subir a vendor manualmente .zipada
       - name: Montar estrutura
         run: |
+          rm -rf deploy
           mkdir -p deploy/apispublicas_laravel
           mkdir -p deploy/public_html
 
@@ -57,9 +63,9 @@ jobs:
             --exclude='tests' \
             --exclude='.env' \
             --exclude='vendor' \
-            ./APIsPublicas/ ./deploy/apispublicas_laravel/
+            APIsPublicas/ deploy/apispublicas_laravel/
 
-          rsync -av ./APIsPublicas/public/ ./deploy/public_html/
+          rsync -av APIsPublicas/public/ deploy/public_html/
 
       # ===== INDEX CORRIGIDO =====
       - name: Ajustar index.php
