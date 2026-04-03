@@ -92,9 +92,9 @@ jobs:
       - name: Deploy FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.FTP_SERVER_APISPUBLICAS }}
+          username: ${{ secrets.FTP_USERNAME_APISPUBLICAS }}
+          password: ${{ secrets.FTP_PASSWORD_APISPUBLICAS }}
           local-dir: ./deploy/
           server-dir: /
           exclude: |
