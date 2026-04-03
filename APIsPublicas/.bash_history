@@ -30,3 +30,4 @@ chmod -R 777 storage
 php artisan storage:link
 npm run dev
 npm run dev
+npm run build
