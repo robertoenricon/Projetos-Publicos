@@ -49,17 +49,17 @@ jobs:
           mkdir -p deploy/apispublicas_laravel
           mkdir -p deploy/public_html
 
-          rsync -av --delete \
+          rsync -av \
             --exclude='public' \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='node_modules' \
             --exclude='tests' \
             --exclude='.env' \
-            --exclude='vendor' \ 
-            APIsPublicas/ deploy/apispublicas_laravel/
+            --exclude='vendor' \
+            ./APIsPublicas/ ./deploy/apispublicas_laravel/
 
-          rsync -av APIsPublicas/public/ deploy/public_html/
+          rsync -av ./APIsPublicas/public/ ./deploy/public_html/
 
       # ===== INDEX CORRIGIDO =====
       - name: Ajustar index.php
