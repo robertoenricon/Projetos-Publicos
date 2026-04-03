@@ -20,9 +20,11 @@ jobs:
           node-version: 20
 
       - name: Instalar dependências do front
+        working-directory: APIsPublicas
         run: npm install
 
       - name: Build dos assets
+        working-directory: APIsPublicas
         run: npm run build
 
       - name: Preparar estrutura de deploy
