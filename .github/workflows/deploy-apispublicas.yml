@@ -23,6 +23,16 @@ jobs:
         with:
           node-version: 20
 
+      - name: Garantir diretórios do Laravel
+        run: |
+          mkdir -p APIsPublicas/bootstrap/cache
+          mkdir -p APIsPublicas/storage/framework/cache
+          mkdir -p APIsPublicas/storage/framework/sessions
+          mkdir -p APIsPublicas/storage/framework/views
+          mkdir -p APIsPublicas/storage/logs
+          chmod -R 775 APIsPublicas/bootstrap/cache
+          chmod -R 775 APIsPublicas/storage
+
       - name: Instalar dependências front
         working-directory: APIsPublicas
         run: npm install
