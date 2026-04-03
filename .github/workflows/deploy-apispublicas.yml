@@ -62,6 +62,11 @@ jobs:
             APIsPublicas/ deploy/apispublicas_laravel/
 
           rsync -av --delete APIsPublicas/public/ deploy/public_html/apispublicas/
+      
+      - name: Limpar caches do Laravel no pacote
+        run: |
+          find deploy/apispublicas_laravel/bootstrap/cache -type f ! -name '.gitignore' -delete || true
+          find deploy/apispublicas_laravel/storage/framework/views -type f ! -name '.gitignore' -delete || true
 
       - name: Ajustar index.php
         run: |
