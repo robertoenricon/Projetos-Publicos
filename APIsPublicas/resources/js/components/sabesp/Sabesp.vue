@@ -76,7 +76,7 @@ import { ref, onMounted } from 'vue';
 // Recebe as variáveis dinâmicas do Blade
 const props = defineProps({
     initialDate: String,
-    apiUrl: String
+    apiSabespUrl: String
 });
 
 const selectedDate = ref(props.initialDate);
@@ -101,7 +101,7 @@ const fetchDailySummary = async () => {
     systems.value = [];
 
     try {
-        const finalUrl = `${props.apiUrl}/${selectedDate.value}`; //Url já vem do Blade com o formato correto, só falta adicionar a data
+        const finalUrl = `${props.apiSabespUrl}/${selectedDate.value}`; //Url já vem do Blade com o formato correto, só falta adicionar a data
 
         const response = await fetch(finalUrl, {
             headers: {

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build:
@@ -26,6 +24,12 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
+      - vite_node_modules:/var/www/node_modules
     ports:
       - "5173:5173"
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "ls -la && npm install && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      - app
+
+volumes:
+  vite_node_modules:

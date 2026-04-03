@@ -19,3 +19,14 @@ php artisan key:generate
 docker-compose exec vite bash
 php artisan config:cache
 php artisan route:cache
+composer install
+rm -rf vendor
+cp .env.example .env
+composer install
+php artisan key:generate
+chmod -R 777 storage
+chmod -R 777 bootstrap/cache
+chmod -R 777 storage
+php artisan storage:link
+npm run dev
+npm run dev
